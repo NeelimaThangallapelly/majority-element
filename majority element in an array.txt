@@ -1,0 +1,49 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        int m=nums[0];
+        int a;
+        for(int i=1;i<nums.length;i++)
+        {
+            if(m<nums[i])
+            {
+                m=nums[i];
+            }
+        }
+        int c[]=new int[m+1];
+        for(int j=0;j<m+1;j++)
+        {
+            c[j]=0;
+        }
+        for(int k=0;k<nums.length;)
+        {
+            if(nums[k]>0){
+             c[nums[k]]=c[nums[k]]+1;
+             k++;
+            }
+            else
+            {
+                k++;
+            }
+        }
+        for(int t=0;t<m+1;t++)
+        {
+            if(c[t]>0)
+            {
+                int p=0;
+                for(int i=0;i<nums.length;i++)
+                {
+                    if(t==nums[i])
+                    {
+                        p++;
+                    }
+                }
+                if(p>(nums.length/2))
+                {
+                     a=t;
+                    return t;
+                }
+            }
+        }
+        return 0;
+    }
+}
